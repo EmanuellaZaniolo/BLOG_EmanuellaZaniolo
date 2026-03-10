@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog manuzete ✦</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --fundo-escuro: #0a0a0a; /* Mais escuro ainda, quase o vazio do espaço */
+            --fundo-caixa: #141414;
+            --texto-claro: #e0e0e0;
+            --cereja: #802651;
+            --rosa-choque: #AA4F7B;
+            --rosa-brilho: rgba(170, 79, 123, 0.5); /* Cor especial pro efeito neon */
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; } /* O smooth faz a tela deslizar devagarzinho até a sessão! */
+        
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fundo-escuro);
+            color: var(--texto-claro);
+            line-height: 1.6;
+        }
+
+        /* --- A NOVA NAVEGAÇÃO COMPLEXA E SWAG --- */
+        nav {
+            background: rgba(10, 10, 10, 0.7); /* Fundo semi-transparente */
+            backdrop-filter: blur(12px); /* EFEITO MÁGICO DE VIDRO FOSCO */
+            -webkit-backdrop-filter: blur(12px); /* Pra funcionar no iPhone */
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between; /* Separa o logo na esquerda e os links na direita */
+            align-items: center; /* Alinha tudo bem no meio da altura */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(170, 79, 123, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        /* O logo que fica na esquerda da navegação */
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--rosa-choque); /* Brilho neon constante */
+            transition: transform 0.3s;
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05); /* Dá um zoomzinho no logo */
+        }
+
+        /* A caixinha que segura os links na direita */
+        .nav-links {
+            display: flex;
+            gap: 15px; /* Espaço entre os botões */
+        }
+
+        /* Os links no formato de pílulas high-tech */
+        .nav-links a {
+            color: var(--texto-claro);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 20px;
+            border-radius: 30px; /* Borda super redonda (pílula) */
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transição com efeito elástico UOU */
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(170, 79, 123, 0.1);
+            color: var(--rosa-choque);
+            border: 1px solid var(--rosa-choque);
+            box-shadow: 0 0 15px var(--rosa-brilho), inset 0 0 10px var(--rosa-brilho); /* Brilho pra fora e pra dentro */
+            transform: translateY(-3px); /* O botão flutua pra cima */
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, var(--fundo-caixa) 0%, var(--fundo-escuro) 100%);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: var(--rosa-choque);
+            text-shadow: 3px 3px 15px var(--rosa-brilho);
+        }
+
+        /* --- LAYOUT PRINCIPAL E RESTANTE --- */
+        .layout-principal {
+            display: flex;
+            gap: 40px;
+            padding: 0 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 60vh;
+        }
+
+        aside {
+            width: 30%;
+            background-color: var(--fundo-caixa);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            height: fit-content;
+        }
+
+        aside h2 {
+            color: var(--rosa-choque);
+            margin-top: 0;
+            border-bottom: 1px dashed var(--cereja);
+            padding-bottom: 10px;
+        }
+
+        .conteudo { width: 70%; }
+
+        .conteudo h2 {
+            color: var(--rosa-choque);
+            border-bottom: 2px solid var(--cereja);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .conteudo h3 { color: #d17b9f; margin-top: 30px; }
+
+        .galeria {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .galeria img {
+            width: calc(33.333% - 14px);
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid var(--cereja);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .galeria img:hover {
+            transform: scale(1.08) rotate(2deg); /* Dá um zoom e uma entortadinha de leve, muito estilo! */
+            border-color: var(--rosa-choque);
+            box-shadow: 0 10px 25px var(--rosa-brilho);
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        footer {
+            background-color: var(--fundo-caixa);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            color: var(--rosa-choque);
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+
+<body id="topo">
+
+    <nav>
+        <a href="#topo" class="nav-logo">✦ manuzete</a>
+        
+        <div class="nav-links">
+            <a href="#sobre">Sobre Mim</a>
+            <a href="#gostos">Gostos</a>
+            <a href="#galeria">Galeria</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>✦⊹₊˚‧ <strong style="color: #fff;">blog da manu</strong> ‧˚₊⊹✦</h1>
+        <p style="color: #888; letter-spacing: 2px;">O CANTINHO MAIS SWAG DA INTERNET</p>
+    </header>
+           
+    <div class="layout-principal">
+        
+        <aside id="sobre">    
+            <h2>Sobre mim</h2>
+            <p>Eu nasci em <strong>Cascavel, Paraná</strong>. Minha mãe se chama Elizangela, e tenho 2 irmãos gêmeos, o Pedro e a Isabella, que são 3 anos mais novos que eu.</p>
+            
+            <p>Estudei por um tempo no <em>Quintino Bocaiuva</em>, um pouco no <em>Caic 1</em> e fiz o ensino fundamental 2 no <em>Wilson Joffre</em>. Minha melhor amiga é a Rafhaela! Conheci ela na igreja e, mesmo não frequentando mais, continuamos super próximas.</p>
+            
+            <p>Minha cor preferida é <strong>preto</strong> e qualquer cor quase preta KKKKKK (vermelho escuro, azul escuro, roxo escuro e verde escuro). Não sou muito dos esportes, mas sei o básico do vôlei. Sobre gastronomia eu não sou boa cozinhando coisas salgadas diferentemente do doce. Eu gosto de qualquer coisa menos salsicha, beterraba, manga, carne de porco.</p>
+        </aside>
+
+        <div class="conteudo" id="gostos">
+            <h2>Meus Gostos</h2>
+            
+            <h3>Música</h3>
+            <p>Meu gosto musical é bem variado. Eu gosto de rap, r&b, bossa nova, mpb, pagode, música latina e pop. Meus cantores favoritos são, sem dúvidas:</p>
+            <ul>
+                <li>Kanye West, 2pac, N.W.A, Tyler, the Creator, A$AP ROCKY, MF DOOM, Brent Faiyaz, 21 Savage</li>
+                <li>Gal Costa e Chico Buarque</li>
+            </ul>
+
+            <h3>Séries, Filmes, Desenhos e Animes</h3>
+            <p>Eu amo assistir séries! Minhas favoritas são <em>Breaking Bad</em>, <em>Better Call Saul</em>, <em>The End of the Fucking World</em> e <em>Dexter</em>. Não sou muito de assistir filme, mas eu <strong>AMO</strong> <em>Cidade de Deus</em>. Os melhores desenhos do mundo são BoJack Horseman, Irmão do Jorel, Apenas um Show e Hora de Aventura.</p>
+            
+            <p>Curiosidade: eu odiava anime antes, mas me converteram e agora eu sou obcecada por <strong>Attack on Titan</strong> e <strong>Fullmetal Alchemist</strong>.</p>
+            
+            <h3 id="galeria">Minhas Fotos</h3>
+            <div class="galeria">
+                <img src="emanuella.jpg" alt="minha foto">
+                <img src="rebrox.jpg" alt="minha foto rebrox">
+                <img src="lirio.jpg" alt="fro">
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>✦ © 2026 Blog da Manu. Feito na mão pela mais SWAG de todas! ✦</p>
+    </footer>
+
+</body>
+</html>

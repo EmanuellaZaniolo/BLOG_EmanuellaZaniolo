@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog manuzete ✦ SUPREME SWAG</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- NÚCLEO DE ENERGIA (CORES) --- */
+        :root {
+            --fundo-vazio: #030303;
+            --texto-claro: #e0e0e0;
+            --cereja: #802651;
+            --rosa-choque: #ff2a85;
+            --roxo-escuro: #4a00e0;
+        }
+
+        /* Esconde o cursor padrão pra gente usar o nosso Neon! */
+        * { box-sizing: border-box; cursor: none !important; scroll-behavior: smooth; }
+        
+        ::selection { background-color: var(--rosa-choque); color: white; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--fundo-vazio); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(var(--roxo-escuro), var(--rosa-choque)); border-radius: 10px; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--fundo-vazio);
+            color: var(--texto-claro);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* --- O FUNDO VIVO E FLUTUANTE (ORBS MÁGICOS) --- */
+        .background-orbs {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: #000;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            animation: flutuar 15s infinite alternate ease-in-out;
+            opacity: 0.5;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--rosa-choque); top: -100px; left: -100px; }
+        .orb-2 { width: 500px; height: 500px; background: var(--roxo-escuro); bottom: -150px; right: -100px; animation-delay: -5s; }
+
+        @keyframes flutuar {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 150px) scale(1.2); }
+        }
+
+        /* --- CURSOR NEON CUSTOMIZADO --- */
+        .cursor-neon {
+            width: 20px; height: 20px;
+            border: 2px solid var(--rosa-choque);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            box-shadow: 0 0 15px var(--rosa-choque);
+        }
+        /* Efeito de clique no cursor */
+        .cursor-neon.clicando {
+            width: 40px; height: 40px;
+            background-color: rgba(255, 42, 133, 0.3);
+        }
+
+        /* --- NAVEGAÇÃO SUPREMA --- */
+        nav {
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 15px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-logo { font-family: 'Space Grotesk'; font-size: 1.8rem; color: #fff; text-decoration: none; text-shadow: 0 0 10px var(--rosa-choque); }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links a {
+            color: #aaa; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--rosa-choque); text-shadow: 0 0 10px var(--rosa-choque); transform: translateY(-3px); }
+
+        /* --- EFEITO GLITCH NO CABEÇALHO (PASSA O MOUSE!!) --- */
+        header { text-align: center; padding: 15vh 20px 10vh 20px; }
+        .glitch-wrapper { position: relative; display: inline-block; }
+        .glitch-título {
+            font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: bold; margin: 0;
+            color: white; position: relative; z-index: 1;
+        }
+        /* A mágica do Cyberpunk */
+        .glitch-wrapper:hover .glitch-título::before, .glitch-wrapper:hover .glitch-título::after {
+            content: "blog da manu"; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent;
+        }
+        .glitch-wrapper:hover .glitch-título::before {
+            left: 4px; text-shadow: -2px 0 var(--rosa-choque); clip-path: inset(20% 0 80% 0); animation: glitch-anim 1s infinite linear alternate-reverse;
+        }
+        .glitch-wrapper:hover .glitch-título::after {
+            left: -4px; text-shadow: -2px 0 var(--roxo-escuro); clip-path: inset(80% 0 5% 0); animation: glitch-anim-2 0.8s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim { 0% { clip-path: inset(20% 0 80% 0); } 100% { clip-path: inset(60% 0 10% 0); } }
+        @keyframes glitch-anim-2 { 0% { clip-path: inset(10% 0 60% 0); } 100% { clip-path: inset(80% 0 5% 0); } }
+
+        header p { color: #888; letter-spacing: 5px; font-weight: 300; font-size: 1.2rem; margin-top: -10px; }
+
+        /* --- LAYOUT E CARDS DE VIDRO ALIENÍGENAS --- */
+        .layout-principal { display: flex; gap: 40px; padding: 0 5%; max-width: 1300px; margin: 0 auto; min-height: 60vh; }
+        
+        .card-vidro {
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px; padding: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
+            transition: 0.5s;
+        }
+        .card-vidro:hover { border-color: rgba(255, 42, 133, 0.4); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+
+        aside { width: 35%; height: fit-content; }
+        .conteudo { width: 65%; }
+
+        h2 { font-family: 'Space Grotesk'; color: white; font-size: 2.2rem; display: flex; align-items: center; gap: 15px; margin-top: 0; }
+        h2::after { content: ""; height: 2px; flex-grow: 1; background: linear-gradient(90deg, var(--rosa-choque), transparent); }
+        h3 { color: var(--rosa-choque); font-size: 1.4rem; margin-top: 30px; display: flex; align-items: center; gap: 10px; }
+        strong { color: white; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+
+        /* --- DISCO DE VINIL GIRANDO --- */
+        .vinil-box { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #111; border-radius: 50%; border: 2px solid #444; animation: girarVinil 2s linear infinite; }
+        .vinil-centro { width: 10px; height: 10px; background: var(--rosa-choque); border-radius: 50%; }
+        @keyframes girarVinil { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* --- GALERIA VIP COM EFEITO 3D --- */
+        .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-top: 40px; perspective: 1000px; /* Prepara pro 3D! */ }
+        .galeria img {
+            width: 100%; height: 280px; object-fit: cover; border-radius: 20px;
+            filter: grayscale(80%) sepia(20%) hue-rotate(280deg); /* Tom obscuro chique */
+            transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .galeria img:hover {
+            filter: grayscale(0%) brightness(1.1);
+            transform: scale(1.1) rotateX(10deg) rotateY(-5deg); /* EFEITO 3D PISANDO NA TELA */
+            box-shadow: -10px 20px 30px rgba(255, 42, 133, 0.4);
+            z-index: 10;
+        }
+
+        footer { text-align: center; padding: 40px; margin-top: 80px; color: #666; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+        
+        /* --- CLASSE MÁGICA DE APARECIMENTO (JAVASCRIPT USA ELA) --- */
+        .escondido { opacity: 0; transform: translateY(80px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .mostrar { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .layout-principal { flex-direction: column; padding: 0 20px; }
+            aside, .conteudo { width: 100%; }
+            .glitch-título { font-size: 3rem; }
+            .nav-links { display: none; /* Esconde no celular pro logo brilhar sozinho */ }
+            * { cursor: auto !important; } /* Desativa o cursor neon no touch */
+            .cursor-neon { display: none; }
+        }
+    </style>
+</head>
+
+<body id="topo">
+
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="cursor-neon" id="cursor"></div>
+
+    <nav>
+        <a href="#topo" class="nav-logo">✦ manuzete</a>
+        <div class="nav-links">
+            <a href="#sobre">Sobre Mim</a>
+            <a href="#gostos">Gostos</a>
+            <a href="#galeria">Galeria</a>
+        </div>
+    </nav>
+
+    <header>
+        <div class="glitch-wrapper">
+            <h1 class="glitch-título">blog da manu</h1>
+        </div>
+        <p>O CANTINHO MAIS SWAG DO UNIVERSO</p>
+    </header>
+           
+    <div class="layout-principal">
+        
+        <aside class="card-vidro escondido" id="sobre">    
+            <h2>Sobre mim</h2>
+            <p>Eu nasci em <strong>Cascavel, Paraná</strong>. Minha mãe se chama Elizangela, e tenho 2 irmãos gêmeos, o Pedro e a Isabella, que são 3 anos mais novos que eu.</p>
+            <p>Estudei por um tempo no <em>Quintino Bocaiuva</em>, um pouco no <em>Caic 1</em> e fiz o ensino fundamental 2 no <em>Wilson Joffre</em>. Minha melhor amiga é a Rafhaela! Conheci ela na igreja e, mesmo não frequentando mais, continuamos super próximas.</p>
+            <p>Minha cor preferida é <strong>preto</strong> e qualquer cor quase preta KKKKKK (vermelho escuro, azul escuro, roxo escuro e verde escuro). Não sou muito dos esportes, mas sei o básico do vôlei. Sobre gastronomia eu não sou boa cozinhando coisas salgadas diferentemente do doce. Eu gosto de qualquer coisa menos salsicha, beterraba, manga, carne de porco.</p>
+        </aside>
+
+        <div class="conteudo card-vidro escondido" id="gostos">
+            <h2>Meus Gostos</h2>
+            
+            <h3>
+                <div class="vinil-box"><div class="vinil-centro"></div></div> 
+                Música
+            </h3>
+            <p>Meu gosto musical é bem variado. Eu gosto de rap, r&b, bossa nova, mpb, pagode, música latina e pop. Meus cantores favoritos são, sem dúvidas:</p>
+            <ul>
+                <li>Kanye West, 2pac, N.W.A, Tyler, the Creator, A$AP ROCKY, MF DOOM, Brent Faiyaz, 21 Savage</li>
+                <li>Gal Costa e Chico Buarque</li>
+            </ul>
+
+            <h3>Séries, Filmes, Desenhos e Animes</h3>
+            <p>Eu amo assistir séries! Minhas favoritas são <em>Breaking Bad</em>, <em>Better Call Saul</em>, <em>The End of the Fucking World</em> e <em>Dexter</em>. Não sou muito de assistir filme, mas eu <strong>AMO</strong> <em>Cidade de Deus</em>. Os melhores desenhos do mundo são BoJack Horseman, Irmão do Jorel, Apenas um Show e Hora de Aventura.</p>
+            <p>Curiosidade: eu odiava anime antes, mas me converteram e agora eu sou obcecada por <strong>Attack on Titan</strong> e <strong>Fullmetal Alchemist</strong>.</p>
+            
+            <h2 id="galeria" style="margin-top: 50px;">Galeria VIP</h2>
+            <div class="galeria">
+                <img src="emanuella.jpg" alt="minha foto" class="escondido">
+                <img src="rebrox.jpg" alt="minha foto rebrox" class="escondido">
+                <img src="lirio.jpg" alt="fro" class="escondido">
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>✦ © 2026 Blog da Manu. <strong>O MAIOR SITE DE CASCAVEL</strong> ✦</p>
+    </footer>
+
+    <script>
+        // 1. O código do Mouse Neon
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+        document.addEventListener('mousedown', () => cursor.classList.add('clicando'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('clicando'));
+
+        // 2. O código que faz as coisas aparecerem rolando a tela (Scroll Reveal Mágico)
+        const elementosEscondidos = document.querySelectorAll('.escondido');
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('mostrar');
+                }
+            });
+        }, { threshold: 0.1 }); // Dispara quando 10% do elemento aparece na tela
+
+        elementosEscondidos.forEach((el) => observador.observe(el));
+    </script>
+
+</body>
+</html>
