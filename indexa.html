@@ -1,237 +1,410 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>blog manuzete ✦</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --fundo-escuro: #0a0a0a; /* Mais escuro ainda, quase o vazio do espaço */
-            --fundo-caixa: #141414;
-            --texto-claro: #e0e0e0;
-            --cereja: #802651;
-            --rosa-choque: #AA4F7B;
-            --rosa-brilho: rgba(170, 79, 123, 0.5); /* Cor especial pro efeito neon */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>blog manuzete ✦</title>
 
-        * { box-sizing: border-box; scroll-behavior: smooth; } /* O smooth faz a tela deslizar devagarzinho até a sessão! */
-        
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--fundo-escuro);
-            color: var(--texto-claro);
-            line-height: 1.6;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 
-        /* --- A NOVA NAVEGAÇÃO COMPLEXA E SWAG --- */
-        nav {
-            background: rgba(10, 10, 10, 0.7); /* Fundo semi-transparente */
-            backdrop-filter: blur(12px); /* EFEITO MÁGICO DE VIDRO FOSCO */
-            -webkit-backdrop-filter: blur(12px); /* Pra funcionar no iPhone */
-            padding: 15px 5%;
-            display: flex;
-            justify-content: space-between; /* Separa o logo na esquerda e os links na direita */
-            align-items: center; /* Alinha tudo bem no meio da altura */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(170, 79, 123, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-        }
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────── */
+    :root {
+      --fundo-escuro:  #0a0a0a;
+      --fundo-caixa:   #141414;
+      --texto-claro:   #e0e0e0;
+      --cereja:        #802651;
+      --rosa-choque:   #AA4F7B;
+      --rosa-brilho:   rgba(170, 79, 123, 0.5);
 
-        /* O logo que fica na esquerda da navegação */
-        .nav-logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px var(--rosa-choque); /* Brilho neon constante */
-            transition: transform 0.3s;
-        }
+      --gap-sm:  12px;
+      --gap-md:  24px;
+      --gap-lg:  40px;
+      --radius:  15px;
+      --max-w:   1200px;
+    }
 
-        .nav-logo:hover {
-            transform: scale(1.05); /* Dá um zoomzinho no logo */
-        }
+    /* ─── RESET ──────────────────────────────────────── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-        /* A caixinha que segura os links na direita */
-        .nav-links {
-            display: flex;
-            gap: 15px; /* Espaço entre os botões */
-        }
+    /* ─── BASE ───────────────────────────────────────── */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--fundo-escuro);
+      color: var(--texto-claro);
+      line-height: 1.6;
+    }
 
-        /* Os links no formato de pílulas high-tech */
-        .nav-links a {
-            color: var(--texto-claro);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            padding: 8px 20px;
-            border-radius: 30px; /* Borda super redonda (pílula) */
-            border: 1px solid transparent;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transição com efeito elástico UOU */
-        }
+    /* ─── NAVEGAÇÃO ──────────────────────────────────── */
+    nav {
+      background: rgba(10, 10, 10, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(170, 79, 123, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      gap: var(--gap-sm);
+    }
 
-        .nav-links a:hover {
-            background-color: rgba(170, 79, 123, 0.1);
-            color: var(--rosa-choque);
-            border: 1px solid var(--rosa-choque);
-            box-shadow: 0 0 15px var(--rosa-brilho), inset 0 0 10px var(--rosa-brilho); /* Brilho pra fora e pra dentro */
-            transform: translateY(-3px); /* O botão flutua pra cima */
-        }
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px var(--rosa-choque);
+      transition: transform 0.3s;
+      white-space: nowrap; /* Evita quebra no nome do logo */
+    }
 
-        /* --- CABEÇALHO --- */
-        header {
-            text-align: center;
-            padding: 80px 20px;
-            background: radial-gradient(circle at center, var(--fundo-caixa) 0%, var(--fundo-escuro) 100%);
-        }
+    .nav-logo:hover { transform: scale(1.05); }
 
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            color: var(--rosa-choque);
-            text-shadow: 3px 3px 15px var(--rosa-brilho);
-        }
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;        /* Quebra em linha se necessário */
+      justify-content: flex-end;
+    }
 
-        /* --- LAYOUT PRINCIPAL E RESTANTE --- */
-        .layout-principal {
-            display: flex;
-            gap: 40px;
-            padding: 0 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 60vh;
-        }
+    .nav-links a {
+      color: var(--texto-claro);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 8px 18px;
+      border-radius: 30px;
+      border: 1px solid transparent;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      white-space: nowrap;
+    }
 
-        aside {
-            width: 30%;
-            background-color: var(--fundo-caixa);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid #222;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            height: fit-content;
-        }
+    .nav-links a:hover {
+      background-color: rgba(170, 79, 123, 0.1);
+      color: var(--rosa-choque);
+      border-color: var(--rosa-choque);
+      box-shadow: 0 0 15px var(--rosa-brilho), inset 0 0 10px var(--rosa-brilho);
+      transform: translateY(-3px);
+    }
 
-        aside h2 {
-            color: var(--rosa-choque);
-            margin-top: 0;
-            border-bottom: 1px dashed var(--cereja);
-            padding-bottom: 10px;
-        }
+    /* Botão hamburger — oculto por padrão */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
 
-        .conteudo { width: 70%; }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--rosa-choque);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
 
-        .conteudo h2 {
-            color: var(--rosa-choque);
-            border-bottom: 2px solid var(--cereja);
-            padding-bottom: 10px;
-            display: inline-block;
-        }
+    /* ─── CABEÇALHO ──────────────────────────────────── */
+    header {
+      text-align: center;
+      padding: clamp(40px, 8vw, 80px) 20px;
+      background: radial-gradient(circle at center, var(--fundo-caixa) 0%, var(--fundo-escuro) 100%);
+    }
 
-        .conteudo h3 { color: #d17b9f; margin-top: 30px; }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.6rem, 5vw, 3rem); /* Escala fluida */
+      color: var(--rosa-choque);
+      text-shadow: 3px 3px 15px var(--rosa-brilho);
+      word-break: break-word;
+    }
 
-        .galeria {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+    header p {
+      color: #888;
+      letter-spacing: 2px;
+      margin: 0;
+      font-size: clamp(0.7rem, 2vw, 0.9rem);
+    }
 
-        .galeria img {
-            width: calc(33.333% - 14px);
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            border: 2px solid var(--cereja);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-        }
+    /* ─── LAYOUT PRINCIPAL ───────────────────────────── */
+    .layout-principal {
+      display: flex;
+      flex-direction: row;
+      gap: var(--gap-lg);
+      padding: 40px 5%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      min-height: 60vh;
+      align-items: flex-start;
+    }
 
-        .galeria img:hover {
-            transform: scale(1.08) rotate(2deg); /* Dá um zoom e uma entortadinha de leve, muito estilo! */
-            border-color: var(--rosa-choque);
-            box-shadow: 0 10px 25px var(--rosa-brilho);
-            cursor: pointer;
-            z-index: 10;
-        }
+    /* ─── ASIDE ──────────────────────────────────────── */
+    aside {
+      flex: 0 0 28%;
+      max-width: 280px;
+      background-color: var(--fundo-caixa);
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid #222;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 72px;           /* Abaixo da nav sticky */
+    }
 
-        footer {
-            background-color: var(--fundo-caixa);
-            text-align: center;
-            padding: 30px;
-            margin-top: 60px;
-            color: var(--rosa-choque);
-            font-weight: 600;
-            letter-spacing: 1px;
-            border-top: 1px solid #222;
-        }
-    </style>
+    aside h2 {
+      color: var(--rosa-choque);
+      margin-top: 0;
+      border-bottom: 1px dashed var(--cereja);
+      padding-bottom: 10px;
+    }
+
+    aside p { font-size: 0.93rem; }
+
+    /* ─── CONTEÚDO ───────────────────────────────────── */
+    .conteudo {
+      flex: 1;
+    }
+
+    .conteudo h2 {
+      color: var(--rosa-choque);
+      border-bottom: 2px solid var(--cereja);
+      padding-bottom: 10px;
+      display: inline-block;
+      margin-top: 0;
+    }
+
+    .conteudo h3 {
+      color: #d17b9f;
+      margin-top: 30px;
+    }
+
+    .conteudo p, .conteudo li { font-size: 0.96rem; }
+
+    /* ─── GALERIA ─────────────────────────────────────── */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);   /* 3 colunas no desktop */
+      gap: var(--gap-md);
+      margin-top: 28px;
+    }
+
+    .galeria img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: var(--radius);
+      border: 2px solid var(--cereja);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      display: block;
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.08) rotate(2deg);
+      border-color: var(--rosa-choque);
+      box-shadow: 0 10px 25px var(--rosa-brilho);
+      cursor: pointer;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* ─── RODAPÉ ──────────────────────────────────────── */
+    footer {
+      background-color: var(--fundo-caixa);
+      text-align: center;
+      padding: 28px 20px;
+      margin-top: 60px;
+      color: var(--rosa-choque);
+      font-weight: 600;
+      letter-spacing: 1px;
+      border-top: 1px solid #222;
+      font-size: 0.9rem;
+    }
+
+
+    /* ═══════════════════════════════════════════════════
+       BREAKPOINTS
+       ═══════════════════════════════════════════════════
+       Desktop  → > 1024px  (padrão acima, sem media query)
+       Tablet   → 601px – 1024px
+       Mobile   → ≤ 600px
+    */
+
+    /* ─── TABLET (601px – 1024px) ────────────────────── */
+    @media (max-width: 1024px) {
+      .layout-principal {
+        gap: var(--gap-md);
+        padding: 30px 4%;
+      }
+
+      aside {
+        flex: 0 0 34%;
+        max-width: none;
+        position: static;      /* Remove sticky — espaço apertado */
+      }
+
+      .galeria {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas no tablet */
+      }
+    }
+
+    /* ─── MOBILE (≤ 600px) ───────────────────────────── */
+    @media (max-width: 600px) {
+      /* Hamburger visível, links ocultos por padrão */
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: var(--gap-sm);
+        border-bottom: 1px solid rgba(170, 79, 123, 0.2);
+      }
+
+      /* Classe adicionada via JS ao clicar no hamburger */
+      .nav-links.aberto {
+        display: flex;
+      }
+
+      /* Layout em coluna única */
+      .layout-principal {
+        flex-direction: column;
+        padding: 20px 16px;
+        gap: var(--gap-md);
+      }
+
+      aside {
+        flex: none;
+        width: 100%;
+        max-width: none;
+        padding: 20px;
+      }
+
+      .conteudo {
+        width: 100%;
+      }
+
+      /* Galeria em 1 coluna */
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+
+      /* Remove hover animado no touch */
+      .galeria img:hover {
+        transform: none;
+        border-color: var(--cereja);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      footer {
+        margin-top: 40px;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+    }
+  </style>
 </head>
 
 <body id="topo">
 
-    <nav>
-        <a href="#topo" class="nav-logo">✦ manuzete</a>
-        
-        <div class="nav-links">
-            <a href="#sobre">Sobre Mim</a>
-            <a href="#gostos">Gostos</a>
-            <a href="#galeria">Galeria</a>
-        </div>
-    </nav>
+  <nav>
+    <a href="#topo" class="nav-logo">✦ manuzete</a>
 
-    <header>
-        <h1>✦⊹₊˚‧ <strong style="color: #fff;">blog da manu</strong> ‧˚₊⊹✦</h1>
-        <p style="color: #888; letter-spacing: 2px;">O CANTINHO MAIS SWAG DA INTERNET</p>
-    </header>
-           
-    <div class="layout-principal">
-        
-        <aside id="sobre">    
-            <h2>Sobre mim</h2>
-            <p>Eu nasci em <strong>Cascavel, Paraná</strong>. Minha mãe se chama Elizangela, e tenho 2 irmãos gêmeos, o Pedro e a Isabella, que são 3 anos mais novos que eu.</p>
-            
-            <p>Estudei por um tempo no <em>Quintino Bocaiuva</em>, um pouco no <em>Caic 1</em> e fiz o ensino fundamental 2 no <em>Wilson Joffre</em>. Minha melhor amiga é a Rafhaela! Conheci ela na igreja e, mesmo não frequentando mais, continuamos super próximas.</p>
-            
-            <p>Minha cor preferida é <strong>preto</strong> e qualquer cor quase preta KKKKKK (vermelho escuro, azul escuro, roxo escuro e verde escuro). Não sou muito dos esportes, mas sei o básico do vôlei. Sobre gastronomia eu não sou boa cozinhando coisas salgadas diferentemente do doce. Eu gosto de qualquer coisa menos salsicha, beterraba, manga, carne de porco.</p>
-        </aside>
+    <!-- Botão hamburger para mobile -->
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" onclick="toggleMenu(this)">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        <div class="conteudo" id="gostos">
-            <h2>Meus Gostos</h2>
-            
-            <h3>Música</h3>
-            <p>Meu gosto musical é bem variado. Eu gosto de rap, r&b, bossa nova, mpb, pagode, música latina e pop. Meus cantores favoritos são, sem dúvidas:</p>
-            <ul>
-                <li>Kanye West, 2pac, N.W.A, Tyler, the Creator, A$AP ROCKY, MF DOOM, Brent Faiyaz, 21 Savage</li>
-                <li>Gal Costa e Chico Buarque</li>
-            </ul>
+    <div class="nav-links" id="nav-links">
+      <a href="#sobre">Sobre Mim</a>
+      <a href="#gostos">Gostos</a>
+      <a href="#galeria">Galeria</a>
+    </div>
+  </nav>
 
-            <h3>Séries, Filmes, Desenhos e Animes</h3>
-            <p>Eu amo assistir séries! Minhas favoritas são <em>Breaking Bad</em>, <em>Better Call Saul</em>, <em>The End of the Fucking World</em> e <em>Dexter</em>. Não sou muito de assistir filme, mas eu <strong>AMO</strong> <em>Cidade de Deus</em>. Os melhores desenhos do mundo são BoJack Horseman, Irmão do Jorel, Apenas um Show e Hora de Aventura.</p>
-            
-            <p>Curiosidade: eu odiava anime antes, mas me converteram e agora eu sou obcecada por <strong>Attack on Titan</strong> e <strong>Fullmetal Alchemist</strong>.</p>
-            
-            <h3 id="galeria">Minhas Fotos</h3>
-            <div class="galeria">
-                <img src="emanuella.jpg" alt="minha foto">
-                <img src="rebrox.jpg" alt="minha foto rebrox">
-                <img src="lirio.jpg" alt="fro">
-            </div>
-        </div>
+  <header>
+    <h1>✦⊹₊˚‧ <strong style="color: #fff;">blog da manu</strong> ‧˚₊⊹✦</h1>
+    <p>O CANTINHO MAIS SWAG DA INTERNET</p>
+  </header>
 
+  <div class="layout-principal">
+
+    <aside id="sobre">
+      <h2>Sobre mim</h2>
+      <p>Eu nasci em <strong>Cascavel, Paraná</strong>. Minha mãe se chama Elizangela, e tenho 2 irmãos gêmeos, o Pedro e a Isabella, que são 3 anos mais novos que eu.</p>
+      <p>Estudei por um tempo no <em>Quintino Bocaiuva</em>, um pouco no <em>Caic 1</em> e fiz o ensino fundamental 2 no <em>Wilson Joffre</em>. Minha melhor amiga é a Rafhaela! Conheci ela na igreja e, mesmo não frequentando mais, continuamos super próximas.</p>
+      <p>Minha cor preferida é <strong>preto</strong> e qualquer cor quase preta KKKKKK (vermelho escuro, azul escuro, roxo escuro e verde escuro). Não sou muito dos esportes, mas sei o básico do vôlei. Sobre gastronomia eu não sou boa cozinhando coisas salgadas diferentemente do doce. Eu gosto de qualquer coisa menos salsicha, beterraba, manga, carne de porco.</p>
+    </aside>
+
+    <div class="conteudo" id="gostos">
+      <h2>Meus Gostos</h2>
+
+      <h3>Música</h3>
+      <p>Meu gosto musical é bem variado. Eu gosto de rap, R&B, bossa nova, MPB, pagode, música latina e pop. Meus cantores favoritos são, sem dúvidas:</p>
+      <ul>
+        <li>Kanye West, 2pac, N.W.A, Tyler, the Creator, A$AP ROCKY, MF DOOM, Brent Faiyaz, 21 Savage</li>
+        <li>Gal Costa e Chico Buarque</li>
+      </ul>
+
+      <h3>Séries, Filmes, Desenhos e Animes</h3>
+      <p>Eu amo assistir séries! Minhas favoritas são <em>Breaking Bad</em>, <em>Better Call Saul</em>, <em>The End of the Fucking World</em> e <em>Dexter</em>. Não sou muito de assistir filme, mas eu <strong>AMO</strong> <em>Cidade de Deus</em>. Os melhores desenhos do mundo são BoJack Horseman, Irmão do Jorel, Apenas um Show e Hora de Aventura.</p>
+      <p>Curiosidade: eu odiava anime antes, mas me converteram e agora eu sou obcecada por <strong>Attack on Titan</strong> e <strong>Fullmetal Alchemist</strong>.</p>
+
+      <h3 id="galeria">Minhas Fotos</h3>
+      <div class="galeria">
+        <img src="emanuella.jpg" alt="minha foto" />
+        <img src="rebrox.jpg" alt="minha foto rebrox" />
+        <img src="lirio.jpg" alt="fro" />
+      </div>
     </div>
 
-    <footer>
-        <p>✦ © 2026 Blog da Manu. Feito na mão pela mais SWAG de todas! ✦</p>
-    </footer>
+  </div>
+
+  <footer>
+    <p>✦ © 2026 Blog da Manu. Feito na mão pela mais SWAG de todas! ✦</p>
+  </footer>
+
+  <script>
+    function toggleMenu(btn) {
+      const links = document.getElementById('nav-links');
+      const aberto = links.classList.toggle('aberto');
+      btn.setAttribute('aria-expanded', aberto);
+    }
+
+    // Fecha o menu ao clicar em qualquer link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('nav-links').classList.remove('aberto');
+        document.querySelector('.nav-toggle').setAttribute('aria-expanded', false);
+      });
+    });
+  </script>
 
 </body>
 </html>
